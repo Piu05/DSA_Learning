@@ -3,7 +3,7 @@
 //it is called modular(or procedural) programming
 #include<iostream>
 using namespace std;
-int add(int a,int b)
+int add(int a,int b)            //Declaration and definition
 {
     int c;
     c=a+b;
@@ -14,7 +14,7 @@ int main()
     int x,y,z;
     cout<<"Enter two values"<<endl;
     cin>>x>>y;
-    z=add(x,y);
+    z=add(x,y);                 //Function calling
     cout<<"The sum is: "<<z;
     return 0;
 }
