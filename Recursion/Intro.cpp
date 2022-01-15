@@ -58,3 +58,13 @@ void main()
 //..and goes upward
 
 //That is why the output in both examples are opposite.
+
+/*
+So in the syntax if :
+{
+line 1;
+recursion line; (eg. fun1(n-1))
+line 2;
+}
+then line 1 will be executed while calling and line 2 will be called upon returning
+*/
