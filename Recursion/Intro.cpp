@@ -68,3 +68,9 @@ line 2;
 }
 then line 1 will be executed while calling and line 2 will be called upon returning
 */
+
+//Types of recursion:
+/*
+1.Tail recursion     (When there are no statements after recursion statement)
+2.Head recursion     (When there are statements after recursion statement)
+3.Tree recursion     (When there are more than one recursion statement in the function)
