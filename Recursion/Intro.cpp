@@ -74,3 +74,5 @@ then line 1 will be executed while calling and line 2 will be called upon return
 1.Tail recursion     (When there are no statements after recursion statement)
 2.Head recursion     (When there are statements after recursion statement)
 3.Tree recursion     (When there are more than one recursion statement in the function)
+4.Indirect recursion (When one function's recursion statement is called in another function and vice versa)
+5.Nested recursion   (When the parameter in the recursive statement is itself a recursive call)
