@@ -29,5 +29,20 @@ int main()
     {
         cout<<B[i]<<" ";
     }
+
+//for array in heap memory use the below syntax (in C++)
+    int *p;
+    p= new int[5]; //It will allocate memory in heap for 5 units
+    p[0]=12;       //Enter values so on 
+    delete []p;    //It will deallocate memory if not needed
+    
+//Increase size of array
+    int *p= new int[5];         //Pre-existing small array
+    int *q= new int[20];        //New created array
+    for(int i=0;i<5;i++)
+        q[i]=p[i];
+    delete []p;
+    p=q;
+    q=NULL;
     return 0;
 }
