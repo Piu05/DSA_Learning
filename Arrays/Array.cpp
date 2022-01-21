@@ -2,7 +2,7 @@
 //Size Of Array
 #include<iostream>
 using namespace std;
-/*int main()
+int main()
 {
     int A[5]={12,15,25};
     cout<<sizeof(A)<<endl;
@@ -63,7 +63,7 @@ using namespace std;
     R[2]=new int[4];        //Created in heap memory
     return 0;
 }
-
+/*
 //Address of array in compiler
 Address(A[i])=B+(i*w)             where B=Base address, i=index, w=size of data type
 Address(A[i][j])=B+(i*n+j)*w      where n=column size [Row major formula]
@@ -73,9 +73,3 @@ For Type A[d1][d2][d3].....[dn]
 Address(A[i1][i2]...[in])=B+{summation(p=1->n){ip*[product(q=p+1->n)dq]}}*w     [Row Major]
 Time Complexity= O(n^2)     [Row Major]
 */
-int main()
-{
-    unsigned int x[4][3]={(1,2,3),(4,5,6),(7,8,9),(10,11,12)};
-    printf("%u,%u,%u",x+3,*(x+3),*(x+2)+3);
-
-}
