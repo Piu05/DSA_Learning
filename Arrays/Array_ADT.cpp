@@ -129,6 +129,7 @@ int main()
     arr.length=n;
     cout<<"*****MENU*****";
     cout<<"1.Append\n2.Insert\n3.Delete\n4.Display\n5.Get\n6.Set\n7.Max\n8.Min\n9.Sum\n10.Average\n11.Exit";
+    cout<<"\nEnter your choice: ";
     cin>>a;
     switch(a)
     {
@@ -154,7 +155,7 @@ int main()
                 break;
         case 5: cout<<"Enter the index: ";
                 cin>>index;
-                Get(arr,index);
+                cout<<Get(arr,index);
                 break;
         case 6: cout<<"Enter the index: ";
                 cin>>index;
@@ -167,6 +168,11 @@ int main()
                 break;
         case 8: cout<<"Minimum value is: "<<Min(arr);
                 break;
+        case 9: cout<<"Sum of array elements is: "<<Sum(arr);
+                break;
+        case 10:cout<<"Average is: "<<Avg(arr);
+                break;
+        case 11:exit(0);
         default:"Wrong option";
                 break;
     }
