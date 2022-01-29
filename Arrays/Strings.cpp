@@ -42,7 +42,7 @@ int main()
             B[i]-=32;
     }
     cout<<"\nAfter changing case string is = "<<B;
-    //Count no. of vowels and consonents in a string
+    //Count no. of vowels and consonants in a string
     char C[]="Today is a nice day";
     int count1=0,count2=0;
     for(int i=0;C[i]!='\0';i++)
@@ -53,7 +53,7 @@ int main()
             count2++;
     }
     cout<<"\nNo. of vowels = "<<count1;
-    cout<<"\nNo. of consonents = "<<count2;
+    cout<<"\nNo. of consonants = "<<count2;
     //Count no. of words in a string
     int word=0;
     for(int i=0;C[i]!='\0';i++)
