@@ -22,6 +22,33 @@ char name[]="John";
 */
 #include<iostream>
 using namespace std;
+//Check if string is valid
+int Valid(char s[10])
+{
+    for(int i=0;s[i]!='\0';i++)
+    {
+        if(!(s[i]>=65 && s[i]<=90 && s[i]<=97 && s[i]>=122 && s[i]<=48 && s[i]>=57))
+        return 0;
+        else
+        return 1;
+    }
+}
+void Reverse(char P[15])
+{
+    int i,len=0,j;
+    char S;
+    for(i=0;P[i]!='\0';i++)
+    {
+        len++;
+    }
+    for(i=0,j=len-1;i<j;i++,j--)
+    {
+        S=P[i];
+        P[i]=P[j];
+        P[j]=S;
+    }
+    cout<<"\nAfter reversing, string is: "<<P;
+}
 int main()
 {
     char A[]="Priyanka";
@@ -62,5 +89,14 @@ int main()
             word++;
     }
     cout<<"\nNo. of words in a string = "<<word+1;
+    //Validate a string
+    char name[10]="Pink!123";
+    if(Valid(name)==1)
+        cout<<"\nValid string";
+    else
+        cout<<"\nInvalid string";
+    //Reverse a string
+    char P[15]="structure";
+    Reverse(P);
     return 0;
 }
