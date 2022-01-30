@@ -33,6 +33,7 @@ int Valid(char s[10])
         return 1;
     }
 }
+//Reverse a string
 void Reverse(char P[15])
 {
     int i,len=0,j;
