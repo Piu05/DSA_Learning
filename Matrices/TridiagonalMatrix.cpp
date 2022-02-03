@@ -19,7 +19,6 @@ class Tridiagonal
         delete []A;
     }
 };
-//Row Major Method
 void Tridiagonal::Set(int i,int j,int x)
 {
     if(i-j==1)
