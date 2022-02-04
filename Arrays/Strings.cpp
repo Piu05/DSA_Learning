@@ -99,5 +99,39 @@ int main()
     //Reverse a string
     char P[15]="structure";
     Reverse(P);
+    //Comparing strings
+    char S[]="Painter";
+    char T[]="Painter";
+    int i,j;
+    for(i=0,j=0;S[i]!='\0';i++,j++)
+    {
+        if(S[i]!=T[j])
+        {   cout<<"\nStrings are not same";
+            break;
+        }
+    }
+    if(S[i]==T[j])
+        cout<<"\nSame strings";
+    else if(S[i]<T[j])
+        cout<<"\nFirst string is smaller";
+    else
+        cout<<"\nFirst string is greater";
+    //Checking palindrome
+    char Pa[]="madam";
+    int c=0;
+    for(int i=0;Pa[i]!='\0';i++)
+    {
+        c++;
+    }
+    for(i=0,j=c-1;i<j;i++,j--)
+    {
+        if(Pa[i]!=Pa[j])
+        {
+            cout<<"\nNot palindrome";
+            break;
+        }
+    }
+    if(i>=j)
+        cout<<"\nPalindrome";
     return 0;
 }
