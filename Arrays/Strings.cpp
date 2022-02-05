@@ -99,5 +99,117 @@ int main()
     //Reverse a string
     char P[15]="structure";
     Reverse(P);
+    //Comparing strings
+    char S[]="Painter";
+    char T[]="Painter";
+    int i,j;
+    for(i=0,j=0;S[i]!='\0';i++,j++)
+    {
+        if(S[i]!=T[j])
+        {   cout<<"\nStrings are not same";
+            break;
+        }
+    }
+    if(S[i]==T[j])
+        cout<<"\nSame strings";
+    else if(S[i]<T[j])
+        cout<<"\nFirst string is smaller";
+    else
+        cout<<"\nFirst string is greater";
+    //Checking palindrome
+    char Pa[]="madam";
+    int c=0;
+    for(int i=0;Pa[i]!='\0';i++)
+    {
+        c++;
+    }
+    for(i=0,j=c-1;i<j;i++,j--)
+    {
+        if(Pa[i]!=Pa[j])
+        {
+            cout<<"\nNot palindrome";
+            break;
+        }
+    }
+    if(i>=j)
+        cout<<"\nPalindrome";
+    //Duplicates in string
+    char D[]="finding";
+    char ch;
+    int Hash[26]={0};
+    for(int i=0;D[i]!='\0';i++)
+    {
+        Hash[D[i]-97]+=1;
+    }
+    for(int i=0;i<26;i++)
+    {
+        if(Hash[i]>1)
+        {
+            ch=i+97;
+            cout<<"\n"<<ch<<" is repeating "<<Hash[i]<<" times";
+        }
+    }
+    //Duplicates in string using bitwise operation
+    /*
+    Bitwise operations-&(AND),|(OR),Masking(checking whether bit is ON(1) or not using ANDing),Merging(making a bit ON(1))
+    H=1 [0 0 0 0 0 0 1] in bits
+    H=H<<2 means shifting 1 to left by 2 positions
+    H=H<<1 means shifting 1 to left by 1 position
+    */
+    int H=0,x=0,I=0;
+    for(int f=0;D[f]!='\0';f++)
+    {
+        x=1;
+        x=x<<(D[f]-97);
+        if((x&H)>0)
+        {
+            if((x&I)==0)
+            {
+                cout<<"\n"<<D[f]<<" is duplicate";
+                I=I|x;
+            }
+        }
+        else
+            H=(x|H);
+    }
+    //Checking if strings are anagram
+    char P1[]="verbose";
+    char P2[]="observe";
+    int Hh[26]={0};
+    for(int i=0;P1[i]!='\0';i++)
+    {
+        Hh[P1[i]-97]+=1;
+    }
+    for(i=0;P2[i]!='\0';i++)
+    {
+        Hh[P2[i]-97]-=1;
+        if(Hh[P2[i]-97]<0)
+        {   
+            cout<<"\nStrings are not anagram";
+            break;
+        }
+    }
+    if(P2[i]=='\0')
+        cout<<"\nStrings are anagram";
+    //Checking string is anagram using bitwise
+    int Z=0,X=0,Y=0;
+    for(i=0;P1[i]!='\0';i++)
+    {
+        X=1;
+        X=X<<(P1[i]-97);
+        Z=X|Z;
+    }
+    for(i=0;P1[i]!='\0';i++)
+    {
+        Y=1;
+        Y=Y<<(P2[i]-97);
+        if((Z&Y)==0)
+        {
+            cout<<"\nNot anagram";
+            break;
+        }
+    }
+    if(P1[i]=='\0')
+        cout<<"\nAnagram";
     return 0;
 }
