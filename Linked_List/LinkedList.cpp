@@ -121,6 +121,22 @@ Node* RSearch(Node *p,int key)
     else 
         RSearch(p->next,key);
 }
+//Improve search by making the searched element in front for future ease
+Node * ImpSearch(Node *p, int key)
+{
+    Node *q=NULL;
+    while(p)
+    {
+        if(key==p->data)
+        {
+            q->next=p->next;
+            p->next=first;
+            first=p;
+        }
+        q=p;
+        p=p->next;
+    }
+    }
 int main()
 {
     int A[]={3,5,7,20,15};
@@ -138,5 +154,9 @@ int main()
         cout<<"Element not found";
     else
         cout<<"Element found at "<<RSearch(first,x);
+    cout<<endl;
+    cout<<ImpSearch(first,x);
+    cout<<endl;
+    Display(first);     //To check if element has come to front after found
     return 0;
 }
