@@ -100,9 +100,31 @@ int Rmax(Node *p)
         return p->data;
     
 }
+//Searching an element
+Node* Search(Node *p, int key)
+{
+    while(p!=NULL)
+    {
+        if(key==p->data)
+            return p;
+        p=p->next;
+    }
+    return NULL;
+}
+//Searching an element using recursion
+Node* RSearch(Node *p,int key)
+{
+    if(p==0)
+        return 0;
+    if (key==p->data)
+        return p;
+    else 
+        RSearch(p->next,key);
+}
 int main()
 {
     int A[]={3,5,7,20,15};
+    int x;
     create(A,5);
     display(first);
     cout<<endl;
@@ -110,5 +132,11 @@ int main()
     cout<<"No. of elements= "<<Count(first);
     cout<<"\nSum of elements= "<<Add(first);
     cout<<"\nMaximum element= "<<Rmax(first);
+    cout<<"\nEnter the element you want to search: ";
+    cin>>x;
+    if(RSearch(first,x)==NULL)
+        cout<<"Element not found";
+    else
+        cout<<"Element found at "<<RSearch(first,x);
     return 0;
 }
