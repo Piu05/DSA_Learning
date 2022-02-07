@@ -45,12 +45,70 @@ void Display(Node *p)
         Display(p->next);
     }
 }
+//Counting nodes
+int count(Node *p)
+{
+    int c=0;
+    while(p!=0)
+    {
+        c++;
+        p=p->next;
+    }
+    return (c);
+}
+//Counting nodes using recursion
+int Count(Node *p)
+{
+    if(p==0)
+        return 0;
+    else
+        return Count(p->next)+1;
+}
+//Sum of elements 
+int Add(Node *p)
+{
+    int sum=0;
+    while(p)
+    {
+        sum+=p->data;
+        p=p->next;
+    }
+    return sum;    
+}
+//Finding max element
+int Max(Node *p)
+{
+    int max=INT32_MIN;
+    while(p)
+    {
+        if(p->data>max)
+            max=p->data;
+        p=p->next;
+    }
+    return max;
+}
+//Method 2 using recursion
+int Rmax(Node *p)
+{
+    int x=0;
+    if(p==0)
+        return INT32_MIN;
+    x=Rmax(p->next);
+    if(x>p->data)
+        return x;
+    else
+        return p->data;
+    
+}
 int main()
 {
-    int A[]={3,5,7,10,15};
+    int A[]={3,5,7,20,15};
     create(A,5);
     display(first);
     cout<<endl;
-    Display(first);
+    //Display(first);
+    cout<<"No. of elements= "<<Count(first);
+    cout<<"\nSum of elements= "<<Add(first);
+    cout<<"\nMaximum element= "<<Rmax(first);
     return 0;
 }
