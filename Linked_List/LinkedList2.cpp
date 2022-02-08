@@ -104,6 +104,35 @@ void SortedInsert(Node *p,int x)
         }
     }
 }
+int Delete(Node *p,int pos)
+{
+    Node *q=NULL;
+    int x=-1;
+    if(pos<1 || pos>count(first))
+    {
+        return -1;
+    }
+    if(pos==1)
+    {
+        q=first;
+        x=first->data;
+        first=first->next;
+        delete q;
+        return x;
+    }
+    else
+    {
+        for(int i=0;i<pos-1;i++)
+        {
+            q=p;
+            p=p->next;
+        }
+        q->next=p->next;
+        x=p->data;
+        delete p;
+        return x;
+    }
+}
 int main()
 {
     int A[]={3,5,7,10,15};
@@ -114,6 +143,8 @@ int main()
     Insert(first,index,x);
     SortedInsert(first,12);
     InsertLast(20);
+    display(first);
+    Delete(first,4);
     display(first);
     return 0;
 }
