@@ -29,6 +29,7 @@ void display(Node *p)
         cout<<p->data<<" ";
         p=p->next;
     }
+    cout<<endl;
 }
 int count(Node *p)
 {
@@ -133,9 +134,41 @@ int Delete(Node *p,int pos)
         return x;
     }
 }
+//Check if list is sorted
+int CheckSort(Node *p)
+{
+    int x=INT32_MIN;
+    while(p)
+    {
+        if(p->data<x)
+            return false;
+        x=p->data;
+        p=p->next;
+    }
+    return true;
+}
+//Remove duplicates from sorted list
+void RemoveDup(Node *p)
+{
+    Node *q=p->next;
+    while(q!=NULL)
+    {
+        if(p->data!=q->data)
+        {
+            p=q;
+            q=q->next;
+        }
+        else
+        {
+            p->next=q->next;
+            delete q;
+            q=p->next;
+        }
+    }
+}
 int main()
 {
-    int A[]={3,5,7,10,15};
+    int A[]={3,5,5,10,20};
     int x,index;
     create(A,5);
     cout<<"Enter element and postion you want to insert: ";
@@ -144,7 +177,13 @@ int main()
     SortedInsert(first,12);
     InsertLast(20);
     display(first);
-    Delete(first,4);
+    //Delete(first,4);
+    //display(first);
+    if(CheckSort(first))
+        cout<<"List is sorted\n";
+    else
+        cout<<"List is not sorted\n";
+    RemoveDup(first);
     display(first);
     return 0;
 }
