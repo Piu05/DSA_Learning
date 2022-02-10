@@ -136,7 +136,52 @@ Node * ImpSearch(Node *p, int key)
         q=p;
         p=p->next;
     }
+}
+//Reversing a linked list   (Using array)
+void Reverse1(Node *p)
+{
+    int *A,i=0;
+    Node *q=p;
+    A=new int[Count(first)];
+    while(q!=NULL)
+    {
+        A[i]=q->data;
+        q=q->next;
+        i++;
     }
+    q=p;
+    i--;
+    while(q!=NULL)
+    {
+        q->data=A[i];
+        q=q->next;
+        i--;
+    }
+}
+//Reversing a list by reversing links   (Using sliding pointer)
+void Reverse2(Node *p)
+{
+    Node *q=NULL,*r=NULL;
+    while(p!=NULL)
+    {
+        r=q;
+        q=p;
+        p=p->next;
+        q->next=r;
+    }
+    first=q;
+}
+//Revrsing a list using recursion
+void Reverse3(Node *q,Node *p)
+{
+    if(p)
+    {
+        Reverse3(p,p->next);
+        p->next=q;
+    }
+    else
+        first=q;
+}
 int main()
 {
     int A[]={3,5,7,20,15};
@@ -144,7 +189,6 @@ int main()
     create(A,5);
     display(first);
     cout<<endl;
-    //Display(first);
     cout<<"No. of elements= "<<Count(first);
     cout<<"\nSum of elements= "<<Add(first);
     cout<<"\nMaximum element= "<<Rmax(first);
@@ -154,9 +198,13 @@ int main()
         cout<<"Element not found";
     else
         cout<<"Element found at "<<RSearch(first,x);
-    cout<<endl;
+     cout<<endl;
     cout<<ImpSearch(first,x);
     cout<<endl;
     Display(first);     //To check if element has come to front after found
+    Reverse1(first);
+    Reverse2(first);
+    Reverse3(NULL,first);
+    display(first);
     return 0;
 }
