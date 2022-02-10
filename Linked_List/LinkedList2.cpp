@@ -5,7 +5,7 @@ struct Node
 {
     int data;
     Node *next;
-}*last,*first=NULL;
+}*last,*first=NULL,*second=NULL;
 void create(int A[],int n)
 {
     Node *t;
@@ -166,6 +166,34 @@ void RemoveDup(Node *p)
         }
     }
 }
+//Concatenate 2 lists
+void create2(int A[],int n)
+{
+    Node *t;
+    second=new Node;
+    second->data=A[0];
+    second->next=NULL;
+    last=second;
+    for(int i=1;i<n;i++)
+    {
+        t=new Node;
+        t->data=A[i];
+        t->next=NULL;
+        last->next=t;
+        last=t;
+    }
+}
+void Concat(Node *p,Node *q)
+{
+    Node *third;
+    third=p;
+    while(p->next!=NULL)
+    {
+        p=p->next;
+    }
+    p->next=q;
+    display(third);
+}
 int main()
 {
     int A[]={3,5,5,10,20};
@@ -177,13 +205,18 @@ int main()
     SortedInsert(first,12);
     InsertLast(20);
     display(first);
-    //Delete(first,4);
-    //display(first);
+    Delete(first,4);
+    display(first);
     if(CheckSort(first))
         cout<<"List is sorted\n";
     else
         cout<<"List is not sorted\n";
     RemoveDup(first);
     display(first);
+    int B[]={10,20,30,40};
+    create2(B,4);
+    cout<<"\nSecond list: ";
+    display(second);
+    Concat(first,second);
     return 0;
 }
