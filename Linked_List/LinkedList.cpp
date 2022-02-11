@@ -10,10 +10,10 @@ struct Node         //Self-referential structure (structure pointing to itself)
 {
     int data;
     Node *next;
-}*first=NULL;
+}*first=NULL,*last;
 void create(int A[],int n)
 {
-    Node *t,*last;
+    Node *t;
     first=new Node;
     first->data=A[0];
     first->next=NULL;
@@ -182,6 +182,26 @@ void Reverse3(Node *q,Node *p)
     else
         first=q;
 }
+//Checking for LOOP in list
+int isLoop(Node *f)
+{
+    Node *p,*q;
+    p=q=f;
+    do
+    {
+        p=p->next;
+        q=q->next;
+        if(q!=NULL)
+            q=q->next;
+        else 
+            q;
+    } while (p && q && p!=q);
+    if(p==q)
+        return true;
+    else 
+        return false;
+
+}
 int main()
 {
     int A[]={3,5,7,20,15};
@@ -206,5 +226,13 @@ int main()
     Reverse2(first);
     Reverse3(NULL,first);
     display(first);
+    Node *t1,*t2;
+    t1=first->next->next;
+    t2=last;
+    t2->next=t1;
+    if(isLoop(first))
+        cout<<"Loop";
+    else
+        cout<<"Not loop";
     return 0;
 }
