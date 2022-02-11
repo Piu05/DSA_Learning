@@ -5,7 +5,7 @@ struct Node
 {
     int data;
     Node *next;
-}*last,*first=NULL,*second=NULL;
+}*last,*first=NULL,*second=NULL,*third=NULL;
 void create(int A[],int n)
 {
     Node *t;
@@ -194,9 +194,45 @@ void Concat(Node *p,Node *q)
     p->next=q;
     display(third);
 }
+//Merging 2 lists
+void Merge(Node *p,Node *q)
+{
+    Node *last;
+    if(p->data<q->data)
+    {
+        third=last=p;
+        p=p->next;
+        third->next=NULL;
+    }
+    else
+    {
+        third=last=q;
+        q=q->next;
+        third->next=NULL;
+    }
+    while(p&&q)
+    {
+        if(p->data<q->data)
+        {
+            last->next=p;
+            last=p;
+            p=p->next;
+            last->next=NULL;
+        }
+        else
+        {
+            last->next=q;
+            last=q;
+            q=q->next;
+            last->next=NULL;
+        }
+    }
+    if(p)   last->next=p;
+    if(q)   last->next=q;
+}
 int main()
 {
-    int A[]={3,5,5,10,20};
+    int A[]={3,5,7,12,25};
     int x,index;
     create(A,5);
     cout<<"Enter element and postion you want to insert: ";
@@ -218,5 +254,7 @@ int main()
     cout<<"\nSecond list: ";
     display(second);
     Concat(first,second);
+    Merge(first,second);
+    display(third);
     return 0;
 }
