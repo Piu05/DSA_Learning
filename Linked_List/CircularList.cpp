@@ -91,12 +91,47 @@ void Insert(Node *p,int index,int x)
         p->next=t;
     }
 }
+//Delete Node form list
+int Delete(Node *p,int pos)
+{
+    Node *q;
+    int i,x;
+    if(pos<0 || pos>Length(Head))
+        return -1;
+    if(pos==1)
+    {
+        while(p->next!=Head)p=p->next;
+        x=Head->data;
+        if(Head==p)
+        {
+            delete Head;
+            Head=NULL;
+        }
+        else
+        {
+            p->next=Head->next;
+            delete Head;
+            Head=p->next;
+        }
+    }
+    else
+    {
+        for(i=0;i<pos-2;i++)
+            p=p->next;
+        q=p->next;
+        p->next=q->next;
+        x=q->data;
+        delete q;
+    }
+    return x;
+}
 int main()
 {
     int A[]={2,3,4,5,6};
     create(A,5);
     display(Head);
     Insert(Head,0,1);
+    Delete(Head,4);
     Rdisplay(Head);
     return 0;
 }
