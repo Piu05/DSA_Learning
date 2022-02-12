@@ -43,11 +43,60 @@ void Rdisplay(Node *h)
     }
     flag=0;
 }
+int Length(Node *p)
+{
+    int len=0;
+    do
+    {
+        len++;
+        p=p->next;
+    } while (p!=Head);
+    return len;
+}
+//Inserting a node
+void Insert(Node *p,int index,int x)
+{
+    Node *t;
+    int i=0;
+    if(index<0 || index>Length(Head))
+    {
+        cout<<"Wrong position";
+        exit(0);
+    }
+    if(index==0)
+    {
+        t=new Node;
+        t->data=x;
+        if(Head==NULL)
+        {
+            Head=t;
+            Head->next=Head;
+        }
+        else
+        {
+            while(p->next!=Head)
+                p=p->next;
+            p->next=t;
+            t->next=Head;
+            Head=t;
+        }
+    }
+    else
+    {
+        for(i=0;i<index-1;i++)
+            p=p->next;
+        t=new Node;
+        t->data=x;
+        t->next=p->next;
+        p->next=t;
+    }
+}
 int main()
 {
     int A[]={2,3,4,5,6};
     create(A,5);
     display(Head);
+    Insert(Head,0,1);
     Rdisplay(Head);
     return 0;
 }
