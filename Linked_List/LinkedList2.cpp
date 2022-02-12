@@ -5,7 +5,7 @@ struct Node
 {
     int data;
     Node *next;
-}*last,*first=NULL;
+}*last,*first=NULL,*second=NULL,*third=NULL;
 void create(int A[],int n)
 {
     Node *t;
@@ -29,6 +29,7 @@ void display(Node *p)
         cout<<p->data<<" ";
         p=p->next;
     }
+    cout<<endl;
 }
 int count(Node *p)
 {
@@ -133,9 +134,105 @@ int Delete(Node *p,int pos)
         return x;
     }
 }
+//Check if list is sorted
+int CheckSort(Node *p)
+{
+    int x=INT32_MIN;
+    while(p)
+    {
+        if(p->data<x)
+            return false;
+        x=p->data;
+        p=p->next;
+    }
+    return true;
+}
+//Remove duplicates from sorted list
+void RemoveDup(Node *p)
+{
+    Node *q=p->next;
+    while(q!=NULL)
+    {
+        if(p->data!=q->data)
+        {
+            p=q;
+            q=q->next;
+        }
+        else
+        {
+            p->next=q->next;
+            delete q;
+            q=p->next;
+        }
+    }
+}
+//Concatenate 2 lists
+void create2(int A[],int n)
+{
+    Node *t;
+    second=new Node;
+    second->data=A[0];
+    second->next=NULL;
+    last=second;
+    for(int i=1;i<n;i++)
+    {
+        t=new Node;
+        t->data=A[i];
+        t->next=NULL;
+        last->next=t;
+        last=t;
+    }
+}
+void Concat(Node *p,Node *q)
+{
+    Node *third;
+    third=p;
+    while(p->next!=NULL)
+    {
+        p=p->next;
+    }
+    p->next=q;
+    display(third);
+}
+//Merging 2 lists
+void Merge(Node *p,Node *q)
+{
+    Node *last;
+    if(p->data<q->data)
+    {
+        third=last=p;
+        p=p->next;
+        third->next=NULL;
+    }
+    else
+    {
+        third=last=q;
+        q=q->next;
+        third->next=NULL;
+    }
+    while(p&&q)
+    {
+        if(p->data<q->data)
+        {
+            last->next=p;
+            last=p;
+            p=p->next;
+            last->next=NULL;
+        }
+        else
+        {
+            last->next=q;
+            last=q;
+            q=q->next;
+            last->next=NULL;
+        }
+    }
+    if(p)   last->next=p;
+    if(q)   last->next=q;
+}
 int main()
 {
-    int A[]={3,5,7,10,15};
+    int A[]={3,5,7,12,25};
     int x,index;
     create(A,5);
     cout<<"Enter element and postion you want to insert: ";
@@ -146,5 +243,18 @@ int main()
     display(first);
     Delete(first,4);
     display(first);
+    if(CheckSort(first))
+        cout<<"List is sorted\n";
+    else
+        cout<<"List is not sorted\n";
+    RemoveDup(first);
+    display(first);
+    int B[]={10,20,30,40};
+    create2(B,4);
+    cout<<"\nSecond list: ";
+    display(second);
+    Concat(first,second);
+    Merge(first,second);
+    display(third);
     return 0;
 }

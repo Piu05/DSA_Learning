@@ -10,10 +10,10 @@ struct Node         //Self-referential structure (structure pointing to itself)
 {
     int data;
     Node *next;
-}*first=NULL;
+}*first=NULL,*last;
 void create(int A[],int n)
 {
-    Node *t,*last;
+    Node *t;
     first=new Node;
     first->data=A[0];
     first->next=NULL;
@@ -136,7 +136,72 @@ Node * ImpSearch(Node *p, int key)
         q=p;
         p=p->next;
     }
+}
+//Reversing a linked list   (Using array)
+void Reverse1(Node *p)
+{
+    int *A,i=0;
+    Node *q=p;
+    A=new int[Count(first)];
+    while(q!=NULL)
+    {
+        A[i]=q->data;
+        q=q->next;
+        i++;
     }
+    q=p;
+    i--;
+    while(q!=NULL)
+    {
+        q->data=A[i];
+        q=q->next;
+        i--;
+    }
+}
+//Reversing a list by reversing links   (Using sliding pointer)
+void Reverse2(Node *p)
+{
+    Node *q=NULL,*r=NULL;
+    while(p!=NULL)
+    {
+        r=q;
+        q=p;
+        p=p->next;
+        q->next=r;
+    }
+    first=q;
+}
+//Revrsing a list using recursion
+void Reverse3(Node *q,Node *p)
+{
+    if(p)
+    {
+        Reverse3(p,p->next);
+        p->next=q;
+    }
+    else
+        first=q;
+}
+//Checking for LOOP in list
+int isLoop(Node *f)
+{
+    Node *p,*q;
+    p=q=f;
+    do
+    {
+        p=p->next;
+        q=q->next;
+        if(q!=NULL)
+            q=q->next;
+        else 
+            q;
+    } while (p && q && p!=q);
+    if(p==q)
+        return true;
+    else 
+        return false;
+
+}
 int main()
 {
     int A[]={3,5,7,20,15};
@@ -144,7 +209,6 @@ int main()
     create(A,5);
     display(first);
     cout<<endl;
-    //Display(first);
     cout<<"No. of elements= "<<Count(first);
     cout<<"\nSum of elements= "<<Add(first);
     cout<<"\nMaximum element= "<<Rmax(first);
@@ -154,9 +218,21 @@ int main()
         cout<<"Element not found";
     else
         cout<<"Element found at "<<RSearch(first,x);
-    cout<<endl;
+     cout<<endl;
     cout<<ImpSearch(first,x);
     cout<<endl;
     Display(first);     //To check if element has come to front after found
+    Reverse1(first);
+    Reverse2(first);
+    Reverse3(NULL,first);
+    display(first);
+    Node *t1,*t2;
+    t1=first->next->next;
+    t2=last;
+    t2->next=t1;
+    if(isLoop(first))
+        cout<<"Loop";
+    else
+        cout<<"Not loop";
     return 0;
 }
