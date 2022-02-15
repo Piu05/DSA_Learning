@@ -50,11 +50,31 @@ void create2(int A[],int n)
         last->next=t;
         last=t;
     }
+    second->next->next=first->next->next->next->next;
+}
+int Intersection(Node *p,Node *q)
+{
+    
+    while(p!=NULL)
+    {   
+        while(q!=NULL)
+        {    
+            if(p==q)
+                return p->data;
+            else
+                q=q->next;
+        }
+        q=second;
+        p=p->next;
+    }
 }
 int main()
 {
     int A[]={1,2,3,4,5,6,7};
+    int B[]={20,30,40};
     create(A,7);
+    create2(B,3);
     cout<<"Middle element is: "<<MiddleEle(first);
+    cout<<"\nIntersection element is: "<<Intersection(first,second);
     return 0;
 }
