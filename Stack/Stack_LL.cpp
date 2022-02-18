@@ -47,7 +47,7 @@ int pop()
 }
 int peek(int index)
 {
-    int x=-1;
+
     Node *p;
     p=top;
     for(int i=0;p!=NULL && i<index-1;i++)
@@ -61,18 +61,25 @@ int peek(int index)
 }
 int isEmpty()
 {
-    if(top)
+    if(top==NULL)
         return 1;
     return 0;
 }
 int isFull()
 {
+    Node *t;
+    t=new Node;
+    if(t==NULL)
+    {
+        delete t;
+        return 1;
+    }
     return 0;
 }
 int stackTop()
 {
-    if(!isEmpty())
-        return;
+    if(top)
+        return top->data;
     return -1;
 }
 int main()
