@@ -55,7 +55,7 @@ void display()
 }
 int isOperand(char s)
 {
-    if(s>='a'&&s<='z')
+    if(s>='0' &&s<='9')     //For only conversion use 'a' and 'z' instead of '0' and '9'
         return 1;
     else
         return 0;
@@ -80,6 +80,10 @@ char* IntoPost(char infix[])
     {
         if(isOperand(infix[i]))
             post[j++]=infix[i++];
+        else if(top==NULL)
+        {
+            push(infix[i++]);
+        }      
         else
         {   if(pre(infix[i])>pre(top->data))
                 push(infix[i++]);
@@ -95,9 +99,7 @@ char* IntoPost(char infix[])
 }
 int main()
 {
-    char infix[]="a+b*c";
-    push('#');
-    display();
+    char infix[]="2+3*4-8/2";
     cout<<"Postfix: "<<IntoPost(infix);
     return 0;
 }
