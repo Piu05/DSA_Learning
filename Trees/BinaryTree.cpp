@@ -122,3 +122,5 @@ int main()
     postorder(root);
     return 0;
 }
+
+//In C++ use class and change functions accordingly
