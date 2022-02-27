@@ -47,6 +47,42 @@ int isEmpty(Queue q)
 {
     return q.front==q.rear;
 }
+struct Stack
+{
+    int Size;
+    int top;
+    Node **S;
+};
+void stackcreate(Stack *st,int size)
+{
+    st->top=-1;
+    st->S=new Node*[size];
+}
+void push(Stack *st,Node *x)
+{
+    if(st->top==st->Size-1)
+        cout<<"Stack Overflow\n";
+    else
+    {
+        st->top++;
+        st->S[st->top]=x;
+    }
+}
+Node *pop(Stack *st)
+{
+    Node *x=NULL;
+    if(st->top==-1)
+        cout<<"Stack Underflow\n";
+    else
+        x=st->S[st->top--];
+    return x;
+}
+int isEmptyStack(Stack st)
+{
+    if(st.top==-1)
+        return 1;
+    return 0;
+}
 void Create()
 {
     Node *p,*t;
@@ -93,6 +129,25 @@ void preorder(Node *p)
         preorder(p->rchild);
     }
 }
+void IPreorder(Node *p)
+{
+    Stack stk;
+    stackcreate(&stk,100);
+    while(p || !isEmptyStack(stk))
+    {
+        if(p)
+        {
+            cout<<p->data;
+            push(&stk,p);
+            p=p->lchild;
+        }
+        else
+        {
+            p=pop(&stk);
+            p=p->rchild;
+        }    
+    }
+}
 void inorder(Node *p)
 {
     if(p)
@@ -116,6 +171,7 @@ int main()
     Create();
     cout<<"Preorder: ";
     preorder(root);
+    IPreorder(root);
     cout<<"\nInorder: ";
     inorder(root);
     cout<<"\nPostorder: ";
