@@ -137,7 +137,7 @@ void IPreorder(Node *p)
     {
         if(p)
         {
-            cout<<p->data;
+            cout<<p->data<<" ";
             push(&stk,p);
             p=p->lchild;
         }
@@ -166,6 +166,27 @@ void postorder(Node *p)
         cout<<p->data<<" ";
     }
 }
+void Levelorder(Node *p)
+{
+    Queue Q;
+    create(&Q,100);
+    cout<<p->data<<" ";
+    enqueue(&Q,p);
+    while(!isEmpty(Q))
+    {
+        p=dequeue(&Q);
+        if(p->lchild)
+        {
+            cout<<p->lchild->data<<" ";
+            enqueue(&Q,p->lchild);
+        }
+        if(p->rchild)
+        {
+            cout<<p->rchild->data<<" ";
+            enqueue(&Q,p->rchild);
+        }
+    }
+}
 int main()
 {
     Create();
@@ -176,6 +197,8 @@ int main()
     inorder(root);
     cout<<"\nPostorder: ";
     postorder(root);
+    cout<<"\nLevelorder: ";
+    Levelorder(root);
     return 0;
 }
 
