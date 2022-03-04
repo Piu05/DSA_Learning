@@ -36,36 +36,6 @@ Node *pop(Stack *st)
         x=st->S[st->top--];
     return x;
 }
-/*void Insert(int key)
-{
-    Node *t=root;
-    Node *r,*p;
-    if(root==NULL)
-    {
-        p=new Node;
-        p->data=key;
-        p->lchild=p->rchild=NULL;
-        root=p;
-        return;
-    }
-    while(t!=NULL)
-    {
-        r=t;
-        if(key<t->data)
-            t=t->lchild;
-        else if(key>t->data)
-            t=t->rchild;
-        else return;
-    }
-    p=new Node;
-    p->data=key;
-    p->lchild=p->rchild=NULL;
-    if(key<r->data)
-        r->lchild=p;
-    else
-        r->rchild=p;
-}
-*/
 void createPre(int pre[],int n)
 {
     Node *t,*p;
