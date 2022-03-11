@@ -50,4 +50,13 @@ For no. of nodes n:
 -Min. height: log(base m)[n*(m-1)+1]-1
 -Max. Height: n-1/m
 External nodes(e) = 2*Internal nodes(i) + 1 
+
+AVL Tree
+For height h:
+-Min nodes: Video     
+-Max nodes: 2^h-1
+For no. of nodes n:
+-Min height: Video
+-Max height: 2^h-1
+
 */
