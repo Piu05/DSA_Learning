@@ -47,6 +47,42 @@ int isEmpty(Queue q)
 {
     return q.front==q.rear;
 }
+struct Stack
+{
+    int Size;
+    int top;
+    Node **S;
+};
+void stackcreate(Stack *st,int size)
+{
+    st->top=-1;
+    st->S=new Node*[size];
+}
+void push(Stack *st,Node *x)
+{
+    if(st->top==st->Size-1)
+        cout<<"Stack Overflow\n";
+    else
+    {
+        st->top++;
+        st->S[st->top]=x;
+    }
+}
+Node *pop(Stack *st)
+{
+    Node *x=NULL;
+    if(st->top==-1)
+        cout<<"Stack Underflow\n";
+    else
+        x=st->S[st->top--];
+    return x;
+}
+int isEmptyStack(Stack st)
+{
+    if(st.top==-1)
+        return 1;
+    return 0;
+}
 void Create()
 {
     Node *p,*t;
@@ -93,6 +129,25 @@ void preorder(Node *p)
         preorder(p->rchild);
     }
 }
+void IPreorder(Node *p)
+{
+    Stack stk;
+    stackcreate(&stk,100);
+    while(p || !isEmptyStack(stk))
+    {
+        if(p)
+        {
+            cout<<p->data<<" ";
+            push(&stk,p);
+            p=p->lchild;
+        }
+        else
+        {
+            p=pop(&stk);
+            p=p->rchild;
+        }    
+    }
+}
 void inorder(Node *p)
 {
     if(p)
@@ -111,14 +166,60 @@ void postorder(Node *p)
         cout<<p->data<<" ";
     }
 }
+void Levelorder(Node *p)
+{
+    Queue Q;
+    create(&Q,100);
+    cout<<p->data<<" ";
+    enqueue(&Q,p);
+    while(!isEmpty(Q))
+    {
+        p=dequeue(&Q);
+        if(p->lchild)
+        {
+            cout<<p->lchild->data<<" ";
+            enqueue(&Q,p->lchild);
+        }
+        if(p->rchild)
+        {
+            cout<<p->rchild->data<<" ";
+            enqueue(&Q,p->rchild);
+        }
+    }
+}
+int count(Node *p)
+{
+    if(p)
+        return count(p->lchild)+count(p->rchild)+1;
+    return 0;
+}
+int height(Node *p)
+{
+    int x=0,y=0;
+    if(p==0)
+        return 0;
+    x=height(p->lchild);
+    y=height(p->rchild);
+    if(x>y)
+        return x+1;
+    else
+        return y+1;
+}
 int main()
 {
     Create();
     cout<<"Preorder: ";
     preorder(root);
+    IPreorder(root);
     cout<<"\nInorder: ";
     inorder(root);
     cout<<"\nPostorder: ";
     postorder(root);
+    cout<<"\nLevelorder: ";
+    Levelorder(root);
+    cout<<"\nCount: "<<count(root);
+    cout<<"\nHeight: "<<height(root);
     return 0;
 }
+
+//In C++ use class and change functions accordingly
