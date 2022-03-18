@@ -68,6 +68,10 @@ int main()
 }
 
 /*
-NOTE: When elements are inserted in a heap and then deleted one by one by storing deleted elements
+NOTE: 
+-When elements are inserted in a heap and then deleted one by one by storing deleted elements
 in the last place then the result is a sorted list.
+-Binary Heap As Priority Queue
+If we have to delete higher priority element from the list then we can create a max/min heap and then
+delete elements from max/min heap to reduce time
 */  
