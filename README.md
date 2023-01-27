@@ -17,9 +17,6 @@ This repository will include all learning material of Data Structures. You can o
 ├── Structures
 └── Trees
 ````
-
 ## Language Reference
 * C
 * C++
-
-### It is intended for self study and revision purpose.
